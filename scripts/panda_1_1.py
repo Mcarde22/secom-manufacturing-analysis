@@ -1,8 +1,9 @@
 #Below is the code segmant to load a CSV file into a Pandas DataFrame:
-
+from pathlib import Path
 import pandas as pd
-
-df = pd.read_csv('../data/uci-secom.csv')
+BASE_DIR = Path(__file__).resolve().parent
+csv_path = BASE_DIR.parent / "data" / "uci-secom.csv"
+df = pd.read_csv(csv_path)
 
 print(df.to_string())
 
@@ -12,15 +13,15 @@ print(df.head())
 
 """below is the code segmant to print a simple panda Series
     -> Keep in mind that a Series is a one-dimensional array-like object 
-    that can hold many data types, including objects. 
-    It is similar to a column in a DataFrame.
+       that can hold many data types, including objects. 
+       It is similar to a column in a DataFrame.
 """
 my_series = pd.Series([1, 2, 3, 4, 5])
 print(my_series)
 
 """below is the code segment for labels 
     -> Labels are the index values of a Series or DataFrame. 
-    They can be used to access specific elements in the data structure.
+       They can be used to access specific elements in the data structure.
 """
 #Below is the first value of the Series
 print(f"The first value of the Series is: {my_series[0]}")
@@ -38,11 +39,11 @@ print("So as you can see the max rows is set to 60, so if the DataFrame has more
 
 pd.options.display.max_rows = 9999
 
-df = pd.read_csv('../data/uci-secom.csv')
+df = pd.read_csv(csv_path)
 print(df)
 
 """Now we will look at the most ost used method for getting a quick overview of the DataFrame, is the head() method.
-The head() method returns the headers and a specified number of rows, starting from the top."""
+   The head() method returns the headers and a specified number of rows, starting from the top."""
 
 #Below is the code segment to print the first 10 rows of the DataFrame
 print(f'df.head(10): "or first ten rows"{df.head(10)}')
@@ -60,10 +61,10 @@ Data cleaning means fixing bad data in your data set.
 
 Bad data could be:
 
-Empty cells
-Data in wrong format
-Wrong data
-Duplicates"""
+->Empty cells
+->Data in wrong format
+->Wrong data
+->Duplicates"""
 
 """Lets clean empty cells. The reason why it is important to clean empty cells is that they can cause problems when analyzing the data.
 For example, if you try to calculate the average of a column that has empty cells, you will get an error. So it is important to clean empty
@@ -71,7 +72,7 @@ For example, if you try to calculate the average of a column that has empty cell
  -> a quick way of doing this is to emove rows with empty cells
  -> below is the code segment to remove rows with empty cells from the DataFrame"""
 
-df = pd.read_csv('../data/uci-secom.csv')
+df = pd.read_csv(csv_path)
 print(df.shape)
 
 new_df = df.dropna()
@@ -81,7 +82,7 @@ print(new_df.to_string())
 
 print("Below is the code segment execution to Remove all rows with NULL values\n")
 
-print("df = pd.read_csv('uci-secom.csv')\ndf.dropna(inplace = True)\nprint(df.to_string())")
+print("df = pd.read_csv(csv_path)\ndf.dropna(inplace = True)\nprint(df.to_string())")
 
 """         Replace Empty Values
             --------------------
@@ -149,3 +150,8 @@ df.fillna(df.mode().iloc[0], inplace=True):
 df.fillna(df.mode().iloc[0], inplace=True)
 
 print(df.to_string())
+"""     Cleaning Data
+        -------------
+        Cleaning data is an important step in the data analysis process. It is important to clean the data before analyzing it, because bad data can cause problems when analyzing the data. There are many ways to clean data, but the most common ways are to remove empty cells, replace empty cells with a value, and remove duplicates.
+        Below is the code segment to convert into a correct format"""
+
