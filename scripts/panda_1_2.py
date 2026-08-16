@@ -83,6 +83,12 @@ outlier_series = pd.Series(outlier_counts).sort_values(ascending=False)
 print(f"\nColumns with outliers: {len(outlier_series)} out of {len(sensor_cols)}")
 print(outlier_series.head(20))
 
+# save the ranked outlier counts to their own csv so we can just read
+# the top sensor names later instead of copy-pasting from the console
+outlier_series_path = BASE_DIR.parent / "data" / "sensor_outlier_ranking.csv"
+outlier_series.rename("outlier_count").rename_axis("sensor").to_csv(outlier_series_path)
+print(f"Sensor outlier ranking saved to: {outlier_series_path}")
+
 # now see it from the ROW side - how many rows have at least one out-of-bound value
 row_has_outlier = pd.Series(False, index=df.index)
 for col in sensor_cols:
