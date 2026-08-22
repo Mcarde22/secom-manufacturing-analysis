@@ -27,3 +27,10 @@ It is kind of intresting because it is about a 13 to 1 ratio of passed to failed
 
 print("An important thing to notice, our cleaned csv file from dashboard_1.py has an agressive row drop.We now need to verify that " \
 "what we did was the right procedure.Check yeild_explore_2.py for the next steps in this process. We will be using the cleaned csv file from dashboard_1.py to explore the yield data.")
+
+sensor_cols = df.select_dtypes(include='number').columns.drop('Pass/Fail')
+group_means = df.groupby('Pass/Fail')[sensor_cols].mean()
+print(group_means)
+
+mean_diff = (group_means.loc[1] - group_means.loc[-1]).abs().sort_values(ascending=False)
+print(mean_diff.head(20))

@@ -106,7 +106,7 @@ print(f"\nRows with at least one outlier value: {row_has_outlier.sum()} out of {
 print(f"Rows before removal: {len(df)}")
 
 # keep only rows where row_has_outlier is False (i.e. no outlier anywhere in that row)
-df_cleaned = df[~row_has_outlier]
+df_cleaned = df_dropped_cols
 
 print(f"Rows after removal: {len(df_cleaned)}")
 print(f"Rows removed: {len(df) - len(df_cleaned)}")
