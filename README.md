@@ -40,6 +40,14 @@ About
 
 By Mario Cardenas, a Computer Science student pursuing a career in semiconductor and defense manufacturing. This repo is also a running log of learning pandas and data cleaning techniques from the ground up.
 
+## Known limitation/decision log
+- Initial cleaning used a per-row outlier filter (any sensor outside 3×IQR removed the row).
+  With ~590 sensor columns, this compounded aggressively and dropped rows from 1,567 → 170,
+  disproportionately removing rare fail-case rows.
+- Switched to a column-based missing-data threshold instead, to preserve as many rows
+  (especially fail cases) as possible. Outlier detection may be revisited later as a
+  per-sensor flag rather than a row-elimination filter.
+
 License
 
 This project's code is licensed under the MIT License - see LICENSE for details. The SECOM dataset itself is used under UCI Machine Learning Repository's terms and is not covered by this project's license.
