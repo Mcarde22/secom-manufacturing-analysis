@@ -39,8 +39,7 @@ C (planned, for the data logger)
 About
 
 By Mario Cardenas, a Computer Science student pursuing a career in semiconductor and defense manufacturing. This repo is also a running log of learning pandas and data cleaning techniques from the ground up.
-
-## Known limitation/decision log
+ Known limitation/decision log
 - Initial cleaning used a per-row outlier filter (any sensor outside 3×IQR removed the row).
   With ~590 sensor columns, this compounded aggressively and dropped rows from 1,567 → 170,
   disproportionately removing rare fail-case rows.
